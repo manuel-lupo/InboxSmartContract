@@ -3,11 +3,12 @@ const ganache = require('ganache');
 const { Web3 } = require('web3');
 const web3 = new Web3(ganache.provider());
 const { interface, bytecode } = require('../compile')
+const INITIAL_MESSAGE = 'Hola primer contrato!';
+
 let accounts;
 let contract;
 let senderAccount;
 let contractAccount;
-const INITIAL_MESSAGE = 'Hola primer contrato!'
 
 beforeEach(async () => {
   // Get a list of all accounts
@@ -27,11 +28,13 @@ describe("Inbox", () => {
     console.log(`Addres of deployed contract: ${address}`)
     assert.ok(address)
   });
+
   it("test_initial_message_ok", async () => {
     const message = await contract.methods.message().call();
     console.log(`Mensaje inicial: ${message}`);
     assert.equal(message, INITIAL_MESSAGE);
-  })
+  });
+
   it('test_message_changes', async ()=> {
     const assert_msg_correct = async (expected_message) =>{
       assert.equal(await contract.methods.message().call(), expected_message);
@@ -45,4 +48,5 @@ describe("Inbox", () => {
     console.log(`Mensaje actualizado: ${actual_message}`)
     assert_msg_correct(expected_message);
   })
+  
 });
