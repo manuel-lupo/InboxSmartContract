@@ -1,3 +1,6 @@
-##Inbox Smart Contract
+# Inbox Smart Contract
 
-Basic smart contract that can be deployed in an internal test network, includes tests of basic functionality that was implemented.
+## Description
+
+- Basic smart contract that can be deployed in an internal test network
+- Includes tests of basic functionality that was implemented.
